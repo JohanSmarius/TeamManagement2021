@@ -25,11 +25,6 @@ namespace Infrastructure
                 new Game(new DateTime(2020, 10, 25, 13, 00, 00), true)
             };
 
-            foreach (var game in games)
-            {
-                game.Players = PlayerSeeder.SeedPlayers();
-            }
-
             return games;
         }
     }
