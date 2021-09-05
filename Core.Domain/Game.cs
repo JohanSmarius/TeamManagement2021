@@ -19,12 +19,35 @@ namespace Core.Domain
         /// Only the time part is relevant. The date part should always be
         /// the same as the playtime.
         /// </summary>
-        public DateTime? DepartureTime {get; set;}
+        //public DateTime? DepartureTime {get; set;}
+
+        private DateTime? _departureTime;
+        
+        /// <summary>
+        /// Only necessary for not home games.
+        /// Only the time part is relevant. The date part should always be
+        /// the same as the playtime.
+        /// </summary>
+        public DateTime? DepartureTime
+        {
+            get { return _departureTime; }
+            set
+            {
+                if (!IsHomeGame)
+                {
+                    _departureTime = value;
+                }
+                else
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
 
         /// <summary>
         /// Home game?
         /// </summary>
-        public bool IsHomeGame { get; set; }
+        public bool IsHomeGame { get;  }
 
         /// <summary>
         /// The primary coach for the game. Other coaches may assist,
@@ -54,5 +77,7 @@ namespace Core.Domain
             IsHomeGame = isHomeGame;
             PlayTime = playTime;
         }
+
+
     }
 }
