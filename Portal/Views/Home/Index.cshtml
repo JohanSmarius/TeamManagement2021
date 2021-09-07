@@ -2,7 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<GamesViewModel>
+
+    <a asp-action="NewGame" class="btn btn-primary">Add Game</a>
+
+<table class="table table-striped">
+        <thead>
+        <th>Playtime</th>
+        <th>DepartureTime</th>
+        <th>Homegame</th>
+        <th>Coach</th>
+        <th>Washduty</th>
+        <th>Drivers</th>
+        <th>Opponent</th>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <partial model="game" name="_GameRow" />
+            }
+        </tbody>
+
+    </table>
+

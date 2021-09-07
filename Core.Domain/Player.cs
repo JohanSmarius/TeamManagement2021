@@ -23,7 +23,7 @@ namespace Core.Domain
 
         public override string ToString()
         {
-            return string.Empty;
+            return $"{Name}-{PlayerNumber}";
         }
     }
 }

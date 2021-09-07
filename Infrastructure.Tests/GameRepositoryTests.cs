@@ -41,7 +41,7 @@ namespace Infrastructure.Tests
            var sut = new GameRepository() { Games = CreateGames() };
 
            // Act
-           var externalGames = new List<Game>();
+           var externalGames = sut.Filter(g => !g.IsHomeGame);
 
            // Assert
            Assert.Equal(3, externalGames.Count());
@@ -54,7 +54,7 @@ namespace Infrastructure.Tests
            var sut = new GameRepository() { Games = CreateGames() };
 
            // Act
-           var externalGames = new List<Game>();
+           var externalGames = sut.Filter(g => g.IsHomeGame && g.PlayTime > new DateTime(2020, 10, 07));
 
            // Assert
            Assert.Equal(2, externalGames.Count());
@@ -67,7 +67,7 @@ namespace Infrastructure.Tests
            var sut = new GameRepository() { Games = CreateGames() };
 
            // Act
-           var externalGames = new List<Game>();
+           var externalGames = sut.Games.FilterGames(g => g.IsHomeGame && g.PlayTime > new DateTime(2020, 10, 07));
 
            // Assert
            Assert.Equal(2, externalGames.Count());
@@ -76,7 +76,18 @@ namespace Infrastructure.Tests
 
         private List<Game> CreateGames()
         {
-           return new List<Game>();
+           return new List<Game>
+            {
+                new Game(new DateTime(2020, 10, 01, 12, 00, 00), true),
+                new Game(new DateTime(2020, 10, 02, 12, 00, 00), false),
+                new Game(new DateTime(2020, 10, 03, 12, 00, 00), true),
+                new Game(new DateTime(2020, 10, 04, 12, 00, 00), false),
+                new Game(new DateTime(2020, 10, 05, 12, 00, 00), false),
+                new Game(new DateTime(2020, 10, 06, 12, 00, 00), true),
+                new Game(new DateTime(2020, 10, 07, 12, 00, 00), true),
+                new Game(new DateTime(2020, 10, 08, 12, 00, 00), true),
+            };
+
         }
     }
 }

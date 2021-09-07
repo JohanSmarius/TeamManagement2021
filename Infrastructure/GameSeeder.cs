@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Domain;
 
 namespace Infrastructure
@@ -25,6 +26,14 @@ namespace Infrastructure
                 new Game(new DateTime(2020, 10, 25, 13, 00, 00), true)
             };
 
+            foreach (var game in games)
+            {
+                game.Players = PlayerSeeder.SeedPlayers();
+            }
+
+            var gameToAddDriversTo = games.First(game => !game.IsHomeGame);
+            gameToAddDriversTo.Drivers.Add(gameToAddDriversTo.Players.Single(player => player.Name == "Player3").CareTakers.First());
+            gameToAddDriversTo.Drivers.Add(gameToAddDriversTo.Players.Single(player => player.Name == "Player6").CareTakers.First());
             return games;
         }
     }
