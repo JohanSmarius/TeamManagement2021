@@ -11,6 +11,7 @@ namespace Infrastructure
 
         public GameRepository()
         {
+            Games = GameSeeder.SeedGames();
         }
 
         public IEnumerable<Game> GetAll() => Games;

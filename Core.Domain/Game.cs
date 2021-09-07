@@ -61,8 +61,10 @@ namespace Core.Domain
         /// For a given game only 12 players are allowed. The teams has 14 players at this time.
         /// </summary>
         public ICollection<PlayerGame> PlayerGames { get; set; }
-        
-        public ICollection<CareTaker> Drivers { get; set; }
+
+        public IEnumerable<Player> Players { get; set; }
+
+        public ICollection<CareTaker> Drivers { get; set; } = new List<CareTaker>();
 
         public CareTaker LaundryDuty { get; set; }
         public int? LaundryDutyId { get; set; }
