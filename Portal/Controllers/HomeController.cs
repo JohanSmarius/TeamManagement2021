@@ -79,6 +79,7 @@ namespace Portal.Controllers
                 return RedirectToAction("Index");
             }
             
+            // Very  important: do not forget to prefill again when posting back the form in error.
             PrefillSelectOptions();
             return View(newGame);
 
