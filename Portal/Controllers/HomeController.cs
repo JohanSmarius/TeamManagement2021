@@ -55,12 +55,6 @@ namespace Portal.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult NewGame(NewGameViewModel newGame)
         {
-            if (newGame.IsHomeGame && newGame.DepartureTime.HasValue)
-            {
-                ModelState.AddModelError(nameof(newGame.DepartureTime),
-                    "Vertrektijd mag niet op worden gegeven bij een thuiswedstrijd");
-            }
-
             if (ModelState.IsValid)
             {
                 var gameToCreate = new Game(newGame.PlayTime, newGame.IsHomeGame);
@@ -80,11 +74,11 @@ namespace Portal.Controllers
                     gameToCreate.LaundryDuty = selectedCareTakerForLaundryDuty;
                 }
 
-
                 _gameRepository.Games.Add(gameToCreate);
 
                 return RedirectToAction("Index");
             }
+            
             PrefillSelectOptions();
             return View(newGame);
 
