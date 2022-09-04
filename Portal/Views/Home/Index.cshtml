@@ -2,9 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model List<GamesViewModel>
-
-    <a asp-action="NewGame" class="btn btn-primary">Add Game</a>
+@model List<Game>
 
 <table class="table table-striped">
         <thead>
@@ -19,7 +17,15 @@
         <tbody>
             @foreach (var game in Model)
             {
-                <partial model="game" name="_GameRow" />
+                <tr>
+                    <td>@($"{game.PlayTime:dd-MM-yyyy HH:mm}")</td>
+                    <td>@($"{game.DepartureTime:HH:mm}")</td>
+                    <td><input asp-for="@game.IsHomeGame" disabled="disabled" /></td>
+                    <td>@(game.Coach?.Name ?? "Coach missing")</td>
+                    <td>@(game.LaundryDuty?.Name ?? "LaundryDuty missing")</td>
+                    <td>TODO Drivers</td>
+                    <td>@game.Opponent?.Name</td>
+                </tr>
             }
         </tbody>
 

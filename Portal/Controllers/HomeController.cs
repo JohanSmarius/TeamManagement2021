@@ -28,7 +28,7 @@ namespace Portal.Controllers
 
         public IActionResult Index()
         {
-            return View(_gameRepository.Games.ToViewModel());
+            return View(_gameRepository.Games);
         }
 
         public IActionResult Privacy()
