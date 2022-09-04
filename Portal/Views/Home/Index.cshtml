@@ -4,8 +4,6 @@
 
 @model List<GamesViewModel>
 
-    <a asp-action="NewGame" class="btn btn-primary">Add Game</a>
-
 <table class="table table-striped">
         <thead>
         <th>Playtime</th>
@@ -19,7 +17,7 @@
         <tbody>
             @foreach (var game in Model)
             {
-                <partial model="game" name="_GameRow" />
+                <partial name="_GameRow" model="game"/>
             }
         </tbody>
 
