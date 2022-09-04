@@ -28,16 +28,6 @@
                 <input class="form-control" asp-for="IsHomeGame" />
             </div>
 
-            <div class="form-group">
-                <label asp-for="CoachId">Coach:</label>
-                <select class="form-control" asp-for="CoachId" asp-items="@ViewBag.Coaches"></select>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="LaundryDutyId">Wasbeurt:</label>
-                <select class="form-control" asp-for="LaundryDutyId" asp-items="@ViewBag.CareTakers"></select>
-            </div>
-
             <div class="form-group row">
                 <button class="btn btn-primary col-sm-4 text-center">Add game</button>
             </div>
